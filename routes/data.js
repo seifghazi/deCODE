@@ -1,9 +1,9 @@
-import { Router } from 'express';
-const router = Router();
+const express = require('express')
+const router = express.Router();
 
 // returns usage spec
 router.get('/', (req, res) => {
     res.send('deCODE API')
 })
 
-export default router
+module.exports = router;
