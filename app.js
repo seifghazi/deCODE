@@ -1,31 +1,39 @@
 const express = require('express');
-const MongoClient = require('mongodb').MongoClient
+const mongo = require('./db/mongo')
 const dataRoutes = require('./routes/data');
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-// connect to db
-// TODO: remove password to env
-const uri = "mongodb+srv://decode:<PASSWORD>@cluster0.xmdbc.mongodb.net/test?retryWrites=true&w=majority";
+const start = async () => {
+    // Parse URL-encoded bodies 
+    app.use(express.urlencoded());
+    
+    // Parse JSON bodies 
+    app.use(express.json());
 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-    if (err) {
-        console.log(err)
-    }
-    client.db().admin().listDatabases().then((databases) => {
-        console.log(databases);
-        client.close();
+    // init mongodb connection
+    await mongo.client.connect()
+
+    // mongo.client.db().admin().listDatabases().then((databases) => {
+    //     console.log(databases);
+    //     mongo.client.close();
+    // })
+
+    // register routes
+    app.use(dataRoutes);
+
+
+
+    app.listen(port, () => {
+        console.log(`The magic happens on port: ${port}`)
     })
-});
+}
 
-// routes
-app.use(dataRoutes);
+start()
 
-app.listen(port, () => {
-    console.log(`The magic happens on port: ${port}`)
-})
+
+
 
 
 
