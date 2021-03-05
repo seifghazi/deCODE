@@ -1,0 +1,22 @@
+{
+  "name": "decode",
+  "version": "1.0.0",
+  "description": "deCODE 2021 ft. League!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seifghazi/deCODE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seifghazi/deCODE/issues"
+  },
+  "homepage": "https://github.com/seifghazi/deCODE#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
